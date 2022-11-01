@@ -1,0 +1,35 @@
+#include "thingProperties.h"
+#include <EduIntro.h>
+DHT11 dht11(D7);
+#include "thingProperties.h"
+#include <EduIntro.h>
+DHT11 dht11(D7);
+
+void setup() {
+  // Initialize serial and wait for port to open:
+  Serial.begin(9600);
+  // This delay gives the chance to wait for a Serial Monitor without blocking if none is found
+  delay(1000); 
+
+  // Defined in thingProperties.h
+  initProperties();
+
+  // Connect to Arduino IoT Cloud
+  ArduinoCloud.begin(ArduinoIoTPreferredConnection);
+  
+  setDebugMessageLevel(2);
+  ArduinoCloud.printDebugInfo();
+}
+
+void loop() {
+  ArduinoCloud.update();
+  // Your code here 
+  dht11.update();
+    temperature = dht11.readCelsius();
+    humidity = dht11.readHumidity();
+}
+// Your code here 
+  dht11.update();
+    temperature = dht11.readCelsius();
+    humidity = dht11.readHumidity();
+}
